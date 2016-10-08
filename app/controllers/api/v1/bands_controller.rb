@@ -1,4 +1,4 @@
-class BandsController < ApplicationController
+class Api::V1::BandsController < ApplicationController
   def index
     @bands = Band.all
     render json: @bands
@@ -6,7 +6,12 @@ class BandsController < ApplicationController
 
   def show
     @band = Band.find_by(id: params[:id])
-    render json: @band
+
+    if @band.nil?
+      not_found
+    else
+      render json: @band
+    end
   end
 
   def create
@@ -24,8 +29,9 @@ class BandsController < ApplicationController
   end
 
   def update
+    @band = Band.find_by(id: params[:id])
     if @band.update(band_params)
-      render json: @band, status: :updated
+      render json: @band, status: 200
     else
       render json: @band.errors, status: :unprocessable_entity
     end
