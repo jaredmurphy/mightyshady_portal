@@ -1,0 +1,2 @@
+class BandsPlayedWith < ApplicationRecord
+end
