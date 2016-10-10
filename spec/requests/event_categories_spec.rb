@@ -1,6 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe "Events API", :type => :request do
+  before(:each) do
+    Event.create(
+      name: "Mighty Shady at Iowa City Yacht Club",
+      date: "2016-10-30",
+      event_category_id: EventCategory.fifth
+    )
+    Event.create(
+      name: "Mighty Shady with Doctor Murdock at DGs",
+      date: "2016-10-28",
+      event_category_id: EventCategory.fifth
+    )
+  end
+
   describe "GET /events" do
     it "returns a 200 OK" do
       get "/api/v1/events" do

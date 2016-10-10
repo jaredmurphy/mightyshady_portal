@@ -2,7 +2,8 @@ Rails.application.routes.draw do
 
   namespace :api do
       namespace :v1 do
-        resources :bands, only: [:index, :show, :new, :create, :edit, :update]
+        resources :bands, only: [:index, :show, :create, :edit, :update]
+        resources :events, only: [:index, :show, :create, :edit, :update]
       end
     end
   get '/calendar', :to => "calendar#index"
